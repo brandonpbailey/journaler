@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.view.ViewPager
 import android.util.Log
+import android.view.MenuItem
 import com.journaler.R
 import com.journaler.fragment.BaseFragment
 import com.journaler.fragment.ItemsFragment
@@ -14,6 +15,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity: BaseActivity(){
+
+
     override val tag = "Main Activity"
     override fun getLayout() = R.layout.activity_main
     override fun getActivityTitle() = R.string.app_name
@@ -46,6 +49,19 @@ class MainActivity: BaseActivity(){
 
         override fun getItem(position: Int): Fragment {
             return ItemsFragment()
+        }
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.drawing_menu -> {
+                Log.v(tag,"Main Menu")
+                return true
+            }
+            R.id.options_menu -> {
+                Log.v(tag,"Options menu")
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
         }
     }
 
