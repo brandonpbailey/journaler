@@ -3,13 +3,16 @@ import android.support.v4.app.FragmentManager
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentStatePagerAdapter
+import android.support.v4.view.GravityCompat
 import android.support.v4.view.ViewPager
 import android.util.Log
 import android.view.MenuItem
+import com.journaler.NavigationDrawerAdapter
 import com.journaler.R
 import com.journaler.fragment.BaseFragment
 import com.journaler.fragment.ItemsFragment
 import com.journaler.fragment.ManualFragment
+import com.journaler.navigation.NavigationDrawerItem
 import kotlinx.android.synthetic.main.activity_header.*
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -24,22 +27,42 @@ class MainActivity: BaseActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         pager.adapter = ViewPagerAdapter(supportFragmentManager)
-        //val fragment = ItemsFragment()
-/*        supportFragmentManager
-                .beginTransaction()
-                .add(R.id.fragment_container, fragment)
-                .commit()
-        filter_menu.text = "H"
-        filter_menu.setOnClickListener {
-            val userManualFrg = ManualFragment()
-            Log.d("Fragment Count",BaseFragment.count.toString())
-            Log.d(tag,"Button clicked")
-            supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, userManualFrg)
-                    .addToBackStack("User Manual")
-                    .commit()
-        }*/
+
+        val menuItems = mutableListOf<NavigationDrawerItem>()
+        val today = NavigationDrawerItem(
+                getString(R.string.today),
+                Runnable {
+                    pager.setCurrentItem(0,true)
+                }
+        )
+        val next7Days = NavigationDrawerItem(
+                getString(R.string.next_seven_days),
+                Runnable {
+                    pager.setCurrentItem(1,true)
+                }
+        )
+        val todos = NavigationDrawerItem(
+                getString(R.string.todos),
+                Runnable {
+                    pager.setCurrentItem(2, true    )
+                }
+        )
+        val notes = NavigationDrawerItem(
+                getString(R.string.notes),
+                Runnable {
+                    pager.setCurrentItem(3, true    )
+                }
+        )
+        menuItems.add(today)
+        menuItems.add(next7Days)
+        menuItems.add(todos)
+        menuItems.add(notes)
+
+        val navigationDrawerAdapter =
+                NavigationDrawerAdapter(this,menuItems)
+        left_drawer.adapter = navigationDrawerAdapter
+
+
     }
     private class ViewPagerAdapter(manager: FragmentManager):
             FragmentStatePagerAdapter(manager){
@@ -54,6 +77,7 @@ class MainActivity: BaseActivity(){
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.drawing_menu -> {
+                drawer_layout.openDrawer(GravityCompat.START)
                 Log.v(tag,"Main Menu")
                 return true
             }

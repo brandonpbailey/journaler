@@ -6,4 +6,8 @@
     <string name="pick_a_time">Pick A Time</string>
     <string name="lorem_ipsum_sit_dolore">lorem ipsum sit dolore</string>
     <string name="mnu"></string>
+    <string name="today">Today</string>
+    <string name="next_seven_days">Next 7 Days</string>
+    <string name="todos">Todos</string>
+    <string name="notes">Notes</string>
 </resources>
