@@ -1,13 +1,10 @@
 package com.journaler.activity
 
 import android.os.Bundle
-import android.support.v4.app.FragmentActivity
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
-import com.journaler.Journaler
 import com.journaler.R
-import kotlinx.android.synthetic.main.activity_header.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 abstract class BaseActivity : AppCompatActivity() {

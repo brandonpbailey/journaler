@@ -1,19 +1,16 @@
 package com.journaler.activity
+
 import android.support.v4.app.FragmentManager
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.view.GravityCompat
-import android.support.v4.view.ViewPager
 import android.util.Log
 import android.view.MenuItem
 import com.journaler.NavigationDrawerAdapter
 import com.journaler.R
-import com.journaler.fragment.BaseFragment
 import com.journaler.fragment.ItemsFragment
-import com.journaler.fragment.ManualFragment
 import com.journaler.navigation.NavigationDrawerItem
-import kotlinx.android.synthetic.main.activity_header.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 
